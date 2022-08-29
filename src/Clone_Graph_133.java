@@ -11,13 +11,13 @@ import java.util.*;
  */
 public class Clone_Graph_133 {
 
-	public Node cloneGraph(Node node) {
+	public QNode cloneGraph(QNode node) {
 		if (node == null)
 			return null;
 
-		Node copy = new Node(node.val);
+		QNode copy = new QNode(node.val);
 
-		Node[] seen = new Node[101];
+		QNode[] seen = new QNode[101];
 		Arrays.fill(seen, null);
 
 		cloneGraph(node, copy, seen);
@@ -25,14 +25,14 @@ public class Clone_Graph_133 {
 		return copy;
 	}
 
-	public void cloneGraph(Node node, Node copy, Node[] seen) {
+	public void cloneGraph(QNode node, QNode copy, QNode[] seen) {
 		seen[copy.val] = copy;
 
-		for (Node n : node.neighbors) {
+		for (QNode n : node.neighbors) {
 			if (seen[n.val] != null) {
 				copy.neighbors.add(seen[n.val]);
 			} else {
-				Node newCopy = new Node(n.val);
+				QNode newCopy = new QNode(n.val);
 				copy.neighbors.add(newCopy);
 				cloneGraph(n, newCopy, seen);
 			}
